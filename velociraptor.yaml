@@ -1,0 +1,16 @@
+
+allow:
+  - read
+  - net
+  - env
+
+unstable: true
+
+envFile: 
+ - .env
+
+scripts:
+  start: deno run ./server.ts
+  dev: deno run --watch ./server.ts
+
+  test: deno test
