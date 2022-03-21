@@ -5,6 +5,9 @@ import {
   getSolvedImage,
 } from "./api/mod.ts";
 
+const BASE_URL = Deno.env.get("BASE_URL") || "http://localhost:8000";
+const PORT = Deno.env.get("PORT") || 8000;
+
 const router = new Router()
   .get("/image", async (ctx) => {
     const url = ctx.request.url.searchParams.get("url");
@@ -42,8 +45,8 @@ const router = new Router()
   });
 
 console.log("Starting server...");
-console.log("Listening on http://localhost:8000");
+console.log(`Listening on ${BASE_URL}:${PORT}`);
 
 await new Application()
   .use(router.routes())
-  .listen({ port: 8000 });
+  .listen({ port: Number(PORT) });
