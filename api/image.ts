@@ -1,12 +1,11 @@
-import { Context } from "../deps.ts";
 import { solve } from "../util/solver.ts";
 
 export const getSolvedImage = async (
-  ctx: Context,
   url: string,
+  width?: number,
+  height?: number,
 ) => {
-  const buffer = await solve(url);
+  const buffer = await solve(url, width, height);
 
-  ctx.response.type = "image/jpeg";
-  ctx.response.body = buffer;
+  return buffer;
 };
