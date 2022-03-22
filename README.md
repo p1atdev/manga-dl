@@ -26,11 +26,13 @@ First, install deno.
 #### Deno
 
 macOS, Linux
+
 ```bash
 curl -fsSL https://deno.land/install.sh | sh
 ```
 
 Windows (PowerShell)
+
 ```bash
 iwr https://deno.land/install.ps1 -useb | iex
 ```
@@ -44,16 +46,19 @@ deno install -qAn vr https://deno.land/x/velociraptor@1.4.0/cli.ts
 ### Build
 
 Clone the repository.
+
 ```bash
 git clone https://github.com/p1atdev/manga-dl
 ```
 
 By using deno
+
 ```bash
 deno compile --allow-net --allow-write --allow-read ./mangadl.ts
 ```
 
 By using velociraptor
+
 ```bash
 vr build
 ```
@@ -97,7 +102,8 @@ manga-dl v0.0.1
 ./mangadl https://shonenjumpplus.com/episode/3269754496638370192
 ```
 
-After this, `mangas` directory will be created and the downloaded manga will be stored in it.
+After this, `mangas` directory will be created and the downloaded manga will be
+stored in it.
 
 ### Download with zip
 
@@ -128,8 +134,8 @@ Not working site(s)
 
 Do not publish mangas downloaded using this tool on the Internet.
 
-Do not use mangas downloaded with this tool for commercial purposes.
-Please keep it for personal use only.
+Do not use mangas downloaded with this tool for commercial purposes. Please keep
+it for personal use only.
 
-The author of this tool is not responsible for any damage caused by the use of this tool. Use at your own risk.
-
+The author of this tool is not responsible for any damage caused by the use of
+this tool. Use at your own risk.
