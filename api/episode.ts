@@ -37,7 +37,11 @@ export const getSolvedEpisodeZip = async (
     },
   ));
 
-  const zip = await compress(images.filter((image) => image));
+  const nonNullImages = images.filter((image): image is Uint8Array => {
+    return image !== null;
+  });
+
+  const zip = await compress(nonNullImages);
 
   return {
     filename: `${encodeURI(json.readableProduct.title)}.zip`,

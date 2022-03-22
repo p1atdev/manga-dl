@@ -1,7 +1,7 @@
 import { JSZip } from "../deps.ts";
 
 export const compress = async (
-  datas: any[],
+  datas: Uint8Array[],
 ): Promise<Blob> => {
   const zip = new JSZip();
 
