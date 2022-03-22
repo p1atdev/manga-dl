@@ -2,6 +2,8 @@ import { getSolvedEpisode } from "../api/episode.ts";
 import { assertEquals } from "../deps.ts";
 
 Deno.test("Get solved episode", async () => {
+  Deno.env.set("BASE_URL", "http://localhost:8000");
+
   const episodeUrl = "https://shonenjumpplus.com/episode/3269754496381675593";
 
   const episode = await getSolvedEpisode(episodeUrl);

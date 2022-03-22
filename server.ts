@@ -48,7 +48,7 @@ const router = new Router()
       return;
     }
 
-    const { zip, filename } = await getSolvedEpisodeZip(url);
+    const { zip, filename } = await getSolvedEpisodeZip({ url });
 
     ctx.response.type = "application/zip";
     ctx.response.headers.set(

@@ -18,5 +18,10 @@ scripts:
 
   test: deno test
 
+  clean: rm -rf ./mangas
+
   compose-up:
     cmd: docker-compose up
+
+  build:
+    cmd: deno compile --allow-net --allow-write --allow-read ./mangadl.ts
