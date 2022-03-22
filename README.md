@@ -16,8 +16,6 @@ manga-dl - download mangas from official manga websites.
 
 <!-- ### macOS -->
 
-
-
 <!-- ### Other OS -->
 
 <!-- Download binary from [here]() or [build from source](#build). -->
