@@ -3,13 +3,17 @@ import { Mangadl } from "./models/mangadl.ts";
 const args = Deno.args;
 
 const helpMessage = `
-manga-dl v1.0.0
+manga-dl v0.0.1
 
     Usage:
+        mangadl --help
         mangadl <url>
-        mangodl <url> [options]
+        mangadl <url> [options]
 
     Options:
+        --help:
+            Show this message
+
         --zip:
             Save as zip
             example:
@@ -42,6 +46,17 @@ for (const arg of args) {
 
   if (arg.startsWith("--")) {
     switch (arg) {
+      case "--help": {
+        if (mangadl.url) {
+          console.error("Cannot use --help with url");
+          console.log(helpMessage);
+          Deno.exit(1);
+        } else {
+          console.log(helpMessage);
+          Deno.exit(0);
+        }
+        break;
+      }
       case "--zip": {
         mangadl.saveAsZip = true;
         break;
