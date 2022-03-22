@@ -14,14 +14,19 @@ manga-dl - download mangas from official manga websites.
 
 <h2 id="installation">Installation</h2>
 
-You have to build from source on this version (v0.0.1).
+<!-- ### macOS -->
+
+
+
+<!-- ### Other OS -->
+
+<!-- Download binary from [here]() or [build from source](#build). -->
+
+<!-- <h2 id="build">Build form source</h2> -->
 
 ### Requirements
 
 - [Deno](https://deno.land)
-- [Velociraptor](https://velociraptor.run) (Optional)
-
-First, install deno.
 
 #### Deno
 
@@ -37,40 +42,20 @@ Windows (PowerShell)
 iwr https://deno.land/install.ps1 -useb | iex
 ```
 
-#### Velociraptor
+### Install
 
 ```bash
-deno install -qAn vr https://deno.land/x/velociraptor@1.4.0/cli.ts
+deno install -qAn mangadl https://deno.land/x/mangadl/mangadl.ts
 ```
 
-### Build
-
-Clone the repository.
-
-```bash
-git clone https://github.com/p1atdev/manga-dl
-```
-
-By using deno
-
-```bash
-deno compile --allow-net --allow-write --allow-read ./mangadl.ts
-```
-
-By using velociraptor
-
-```bash
-vr build
-```
-
-mangadl binary will be generated in the current directory.
+(`-qAn mangadl` means that run quietly, allow all, and name as `mangadl` )
 
 <h2 id="usage">Usage</h2>
 
 ### Help
 
 ```bash
-$ ./mangadl --help
+$ mangadl --help
 
 manga-dl v1.0.0
 
@@ -99,7 +84,7 @@ manga-dl v0.0.1
 ### Basic usage
 
 ```bash
-./mangadl https://shonenjumpplus.com/episode/3269754496638370192
+mangadl https://shonenjumpplus.com/episode/3269754496638370192
 ```
 
 After this, `mangas` directory will be created and the downloaded manga will be
@@ -108,13 +93,13 @@ stored in it.
 ### Download with zip
 
 ```bash
-./mangadl https://shonenjumpplus.com/episode/3269754496638370192 --zip
+mangadl https://shonenjumpplus.com/episode/3269754496638370192 --zip
 ```
 
 ### Change download directory
 
 ```bash
-./mangadl https://shonenjumpplus.com/episode/3269754496638370192 --dir /path/to/download
+mangadl https://shonenjumpplus.com/episode/3269754496638370192 --dir /path/to/download
 ```
 
 <h2 id="supported-sites">Supported sites</h2>
