@@ -55,8 +55,6 @@ deno install -qAn mangadl https://deno.land/x/mangadl/mangadl.ts
 ```bash
 $ mangadl --help
 
-manga-dl v1.0.0
-
 manga-dl v0.0.1
 
     Usage:
