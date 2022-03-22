@@ -1,0 +1,11 @@
+version: '3'
+services:
+  manga_crawler:
+    image: "denoland/deno:1.20.1"
+    build: .
+    ports:
+     - "8000:1993"
+    env_file:
+      - .env
+
+    

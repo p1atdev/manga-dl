@@ -45,7 +45,7 @@ const router = new Router()
   });
 
 console.log("Starting server...");
-console.log(`Listening on ${BASE_URL}:${PORT}`);
+console.log(`Listening on ${BASE_URL}`);
 
 await new Application()
   .use(router.routes())

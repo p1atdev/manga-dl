@@ -10,7 +10,13 @@ envFile:
  - .env
 
 scripts:
-  start: deno run ./server.ts
-  dev: deno run --watch ./server.ts
+  start: 
+    cmd: deno run ./server.ts
+  dev: 
+    cmd: deno run ./server.ts
+    watch: true
 
   test: deno test
+
+  compose-up:
+    cmd: docker-compose up
