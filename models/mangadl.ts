@@ -80,16 +80,23 @@ export class Mangadl {
         new Uint8Array(await zip.arrayBuffer()),
       );
     } else { // save as images directly
-      episode.readableProduct.pageStructure.pages.filter((page) => {
-        return page.type === "main";
-      }).forEach(async (page, index) => {
-        if (!page.src) return;
-        const image = await getSolvedImage(page.src!, page.width, page.height);
-        Deno.writeFile(
-          `${this.saveDir}/${episode.readableProduct.series.title}/${episode.readableProduct.title}/${index}.jpg`,
-          image,
-        );
-      });
+      await Promise.all(
+        episode.readableProduct.pageStructure.pages.filter((page) => {
+          return page.type === "main";
+        }).map(async (page, index) => {
+          if (!page.src) return;
+          const image = await getSolvedImage(
+            page.src!,
+            page.width,
+            page.height,
+          );
+          Deno.writeFile(
+            `${this.saveDir}/${episode.readableProduct.series.title}/${episode.readableProduct.title}/${index}.jpg`,
+            image,
+          );
+          return;
+        }),
+      );
     }
   }
 }
