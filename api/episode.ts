@@ -1,15 +1,24 @@
 import { Episode } from "../types/manga.ts";
 import { compress } from "../util/mod.ts";
 
-export const getSolvedEpisode = async (
-  url: string,
-) => {
+export const getEpisode = async (url: string): Promise<Episode> => {
   const episodeUrl = url.endsWith(".json") ? url : url + ".json";
 
   const res = await fetch(episodeUrl);
-  const json: Episode = await res.json();
+  const episode: Episode = await res.json();
 
-  json.readableProduct.pageStructure.pages.filter((page) => {
+  return episode;
+};
+
+export const getSolvedEpisode = async (
+  url: string,
+): Promise<Episode> => {
+  const episodeUrl = url.endsWith(".json") ? url : url + ".json";
+
+  const res = await fetch(episodeUrl);
+  const episode: Episode = await res.json();
+
+  episode.readableProduct.pageStructure.pages.filter((page) => {
     // only manga pages
     return page.type === "main";
   }).forEach((page) => {
@@ -20,22 +29,34 @@ export const getSolvedEpisode = async (
       : undefined;
   });
 
-  return json;
+  return episode;
 };
 
-export const getSolvedEpisodeZip = async (
-  url: string,
-) => {
-  const json: Episode = await getSolvedEpisode(url);
+export const getSolvedEpisodeZip = async ({
+  url,
+  episode,
+}: { url?: string; episode?: Episode }) => {
+  if (url && !episode) {
+    episode = await getSolvedEpisode(url);
+  }
 
-  const images = await Promise.all(json.readableProduct.pageStructure.pages.map(
-    async (page) => {
-      const imageUrl = page.src;
-      if (!imageUrl) return null;
-      const res = await fetch(imageUrl);
-      return new Uint8Array(await res.arrayBuffer());
-    },
-  ));
+  if (!episode) {
+    throw new Error("No episode given");
+  }
+
+  const images = await Promise.all(
+    episode.readableProduct.pageStructure.pages.filter((page) => {
+      return page.type === "main";
+    })
+      .map(
+        async (page) => {
+          const imageUrl = page.src;
+          if (!imageUrl) return null;
+          const res = await fetch(imageUrl);
+          return new Uint8Array(await res.arrayBuffer());
+        },
+      ),
+  );
 
   const nonNullImages = images.filter((image): image is Uint8Array => {
     return image !== null;
@@ -44,7 +65,7 @@ export const getSolvedEpisodeZip = async (
   const zip = await compress(nonNullImages);
 
   return {
-    filename: `${encodeURI(json.readableProduct.title)}.zip`,
+    filename: `${encodeURI(episode.readableProduct.title)}.zip`,
     zip: zip,
   };
 };
