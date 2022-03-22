@@ -1,0 +1,22 @@
+name: Format
+
+# push時とpr時に実行
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Git Checkout Module
+      uses: actions/checkout@v2
+
+    - name: Use Deno
+      uses: denoland/setup-deno@v1
+      with:
+        deno-version: v1.x
+
+    - name: Format # フォーマッター
+      run: deno fmt --check
+    - name: Lint # リンター
+      run: deno lint
+    

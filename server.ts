@@ -17,7 +17,17 @@ const router = new Router()
       return;
     }
 
-    await getSolvedImage(ctx, url);
+    const width: number | undefined = (() => {
+      const width = ctx.request.url.searchParams.get("width");
+      return width ? parseInt(width) : undefined;
+    })();
+    const height: number | undefined = (() => {
+      const height = ctx.request.url.searchParams.get("height");
+      return height ? parseInt(height) : undefined;
+    })();
+
+    ctx.response.type = "image/jpeg";
+    ctx.response.body = await getSolvedImage(url, width, height);
   })
   .get("/episode", async (ctx) => {
     const url = ctx.request.url.searchParams.get("url");
@@ -27,7 +37,8 @@ const router = new Router()
       return;
     }
 
-    await getSolvedEpisode(ctx, url);
+    ctx.response.type = "application/json";
+    ctx.response.body = await getSolvedEpisode(url);
   })
   .get("/download/episode", async (ctx) => {
     const url = ctx.request.url.searchParams.get("url");
@@ -37,7 +48,14 @@ const router = new Router()
       return;
     }
 
-    await getSolvedEpisodeZip(ctx, url);
+    const { zip, filename } = await getSolvedEpisodeZip(url);
+
+    ctx.response.type = "application/zip";
+    ctx.response.headers.set(
+      "Content-Disposition",
+      `attachment; filename="${filename}"`,
+    );
+    ctx.response.body = zip;
   })
   .get("/", (ctx) => {
     ctx.response.status = 404;
