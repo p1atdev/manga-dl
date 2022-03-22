@@ -10,17 +10,10 @@ manga-dl - download mangas from official manga websites.
 - [Installation](#installation)
 - [Usage](#usage)
 - [Supported sites](#supported-sites)
+- [TODO](#todo)
 - [Agreement](#agreement)
 
 <h2 id="installation">Installation</h2>
-
-<!-- ### macOS -->
-
-<!-- ### Other OS -->
-
-<!-- Download binary from [here]() or [build from source](#build). -->
-
-<!-- <h2 id="build">Build form source</h2> -->
 
 ### Requirements
 
@@ -110,6 +103,11 @@ Not working site(s)
 
 - [Ura sunday (裏サンデー)](https://urasunday.com)
 - etc
+
+<h2 id="todo">TODO</h2>
+
+- [ ] Feature to download by `series`
+- [ ] Feature to download all available episodes
 
 <h2 id="agreement">Agreement</h2>
 
