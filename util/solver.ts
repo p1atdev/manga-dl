@@ -5,11 +5,15 @@ export const solve = async (
   width?: number,
   height?: number,
 ): Promise<Uint8Array> => {
-  const image = await getImage(url);
+  try {
+    const image = await getImage(url);
 
-  const solver = new Solver(image, width, height);
+    const solver = new Solver(image, width, height);
 
-  solver.solve();
+    solver.solve();
 
-  return solver.answer();
+    return solver.answer();
+  } catch (err) {
+    throw new Error(err);
+  }
 };
