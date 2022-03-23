@@ -84,7 +84,7 @@ manga-dl v0.0.2
         --dir:
             Change save directory
             example:
-                mangadl --dir /path/to/save/mangas https://example.com/episode/1234 
+                mangadl --dir /path/to/save/mangas https://example.com/episode/1234
 ```
 
 ### Basic usage
@@ -105,7 +105,7 @@ mangadl --zip https://shonenjumpplus.com/episode/3269754496638370192
 ### Download all episodes of a series [Experimental]
 
 ```bash
-mangadl --all https://shonenjumpplus.com/episode/3269754496638370192 
+mangadl --all https://shonenjumpplus.com/episode/3269754496638370192
 ```
 
 ### Change download directory
