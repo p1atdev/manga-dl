@@ -41,6 +41,12 @@ deno install -qAn mangadl https://deno.land/x/mangadl/mangadl.ts
 
 (`-qAn mangadl` means that run quietly, allow all, and name as `mangadl` )
 
+#### Upgrade
+
+```bash
+mangadl upgrade
+```
+
 <h2 id="usage">Usage</h2>
 
 ### Help
@@ -48,12 +54,17 @@ deno install -qAn mangadl https://deno.land/x/mangadl/mangadl.ts
 ```bash
 $ mangadl --help
 
-manga-dl v0.0.1
+manga-dl v0.0.2
 
     Usage:
+        mangadl upgrade
         mangadl --help
         mangadl <url>
-        mangadl <url> [options]
+        mangadl [options] <url> 
+
+    Commands:
+        upgrade:
+            Upgrade mangadl to the latest version.
 
     Options:
         --help:
@@ -62,12 +73,18 @@ manga-dl v0.0.1
         --zip:
             Save as zip
             example:
-                mangadl https://example.com/episode/1234 --zip
+                mangadl --zip https://example.com/episode/1234 
+
+        --all: [Experimental]
+            Download all episodes of a series
+            This is an experimental feature.
+            example:
+                mangadl --all https://example.com/series/1234 
 
         --dir:
             Change save directory
             example:
-                mangadl https://example.com/episode/1234 --dir /path/to/save/mangas
+                mangadl --dir /path/to/save/mangas https://example.com/episode/1234 
 ```
 
 ### Basic usage
@@ -82,13 +99,19 @@ stored in it.
 ### Download with zip
 
 ```bash
-mangadl https://shonenjumpplus.com/episode/3269754496638370192 --zip
+mangadl --zip https://shonenjumpplus.com/episode/3269754496638370192
+```
+
+### Download all episodes of a series [Experimental]
+
+```bash
+mangadl --all https://shonenjumpplus.com/episode/3269754496638370192 
 ```
 
 ### Change download directory
 
 ```bash
-mangadl https://shonenjumpplus.com/episode/3269754496638370192 --dir /path/to/download
+mangadl --dir /path/to/download https://shonenjumpplus.com/episode/3269754496638370192
 ```
 
 <h2 id="supported-sites">Supported sites</h2>
